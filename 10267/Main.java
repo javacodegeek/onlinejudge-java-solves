@@ -17,7 +17,7 @@ class Main {
             return (null);
         }
 
-        if ((car < 0) && (lg == 0)) return (null); 
+        if ((car < 0) && (lg == 0)) return (null);
         return (new String (lin, 0, lg));
     }
 
@@ -26,11 +26,11 @@ class Main {
 		    String input;
         StringTokenizer data;
         String cmd;
-   
+
         char[][] Image = null;
 
-          int m = 0; 
-          int n = 0; 
+          int m = 0;
+          int n = 0;
           int x, y, x1, x2, y1, y2;
           char c;
           String name;
@@ -38,7 +38,7 @@ class Main {
           while ((input = ReadLn (255)) != null){
           data = new StringTokenizer (input);
           cmd = data.nextToken();
-          
+
           switch (cmd){
             case "I":
                      m = Integer.parseInt(data.nextToken());
@@ -75,7 +75,7 @@ class Main {
                      y2 = Integer.parseInt(data.nextToken());
                      c = data.nextToken().charAt(0);
                      cmd_K(Image, x1, x2, y1, y2, c);
-                     break; 
+                     break;
             case "F":
                      x = Integer.parseInt(data.nextToken());
                      y = Integer.parseInt(data.nextToken());
@@ -92,9 +92,9 @@ class Main {
                      cmd_X();
                      break;
             default:
-                       break;                 
+                       break;
           }
-          
+
         }
 
 	}
@@ -120,46 +120,46 @@ class Main {
   }
 
   public static char[][] cmd_L(char[][] Img, int X, int Y, char C){
-    
+
         Img[Y][X] = C;
-     
+
       return Img;
   }
 
   public static char[][] cmd_V(char[][] Img, int X, int Y1, int Y2, char C){
-    
+
         for(int i = Y1; i<= Y2; i++) {
           Img[i][X] = C;
         }
-     
+
       return Img;
   }
 
   public static char[][] cmd_H(char[][] Img, int X1, int X2, int Y, char C){
-    
+
         for(int j = X1; j<= X2; j++) {
           Img[Y][j] = C;
         }
-     
+
       return Img;
   }
 
   public static char[][] cmd_K(char[][] Img, int X1, int X2, int Y1, int Y2, char C){
-    
+
         for(int i = X1; i<= X2; i++) {
           for(int j = Y1; j<= Y2; j++){
-            Img[j][i] = C;  
+            Img[j][i] = C;
           }
         }
-     
+
       return Img;
   }
 
   public  static boolean isSetColorXY = false;
   public  static char colorXY = 'O';
 
-  public static void cmd_F(char[][] Img, int X, int Y, char C, int M, int N){ 
-      
+  public static void cmd_F(char[][] Img, int X, int Y, char C, int M, int N){
+
         if (isSetColorXY == false){
                colorXY = Img[Y][X];
                if (colorXY == C) {
@@ -168,34 +168,32 @@ class Main {
                isSetColorXY = true;
         }
 
-             
+      //  System.out.println("X = " + X + " Y = " + Y);
+
         if((X < 1)||(X > M)||(Y < 1)||(Y > N)||(Img[Y][X] != colorXY)||(Img[Y][X] == C)){
           return;
         }
 
             Img[Y][X] = C;
 
-        
             cmd_F(Img, X, Y + 1, C, M, N);
             cmd_F(Img, X, Y - 1, C, M, N);
             cmd_F(Img, X - 1 , Y, C, M, N);
             cmd_F(Img, X + 1, Y, C, M, N);
-        
-            
-        
+
   }
 
   public static void cmd_S(String name){
-    
+
         System.out.println(name);
-     
+
       return;
   }
 
   public static void cmd_X(){
-    
+
         System.exit(0);
-     
+
       return;
   }
 
@@ -208,9 +206,4 @@ class Main {
     }
     return;
   }
-  
-  
-
-
-
 }
